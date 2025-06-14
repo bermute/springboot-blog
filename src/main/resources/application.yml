@@ -1,0 +1,36 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+
+#spring:
+#  datasource:
+#    #url: jdbc:h2:file:C:/Users/user/testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#    #url: jdbc:h2:file:~/testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#    url: jdbc:h2:mem:testdb
+#  jpa:
+#    hibernate:
+#      ddl-auto: create # 🔥 핵심! 테이블 자동 생성
+#    #전송 쿼리 확인
+#    show-sql:  true
+#    properties:
+#        hibernate:
+#          format_sql:  true
+##  sql:
+##    init:
+##      mode: always  # 이거 추가 Spring Boot 2.5 이후부터는 data.sql 자동 실행이 비활성화됨→ 명시적으로 활성화해야 함
+#  h2:
+#    console:
+#      enabled:  true
+#    #테이블 생성 후에 data.sql 실행
+#    defer-datasource-initialization: true
+#
+
