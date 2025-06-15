@@ -23,6 +23,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok' // 롬복
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.assertj:assertj-core:+'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // 타임리프를 사용하기 위해
 }
 
 test {

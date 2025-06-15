@@ -2,7 +2,10 @@ package com.abell.blog.service;
 
 import com.abell.blog.domain.Article;
 import com.abell.blog.dto.AddArticleRequest;
+import com.abell.blog.dto.UpdateArticleRequest;
 import com.abell.blog.repository.BlogRepository;
+import jakarta.servlet.http.PushBuilder;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,23 @@ public class BlogService {
 
     public List<Article> findAll(){
         return blogRepository.findAll();
+    }
+
+    public Article findById(long id){
+        return blogRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("not found: " + id));
+    }
+
+    public void delete(long id){
+        blogRepository.deleteById(id);
+    }
+
+    @Transactional
+    public Article update(long id, UpdateArticleRequest request) {
+        Article article = blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+        article.update(request.getTitle(), request.getContent());
+        return article;
     }
 
 
