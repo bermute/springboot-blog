@@ -5,10 +5,16 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter //필드변수 게터 메서드 적용
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // 생성자 접근 제어 protected 설정
+@EntityListeners(AuditingEntityListener.class)
 public class Article {
     @Id //Id 필드를 기본키로 지정
     @GeneratedValue(strategy = GenerationType.IDENTITY) //기본키를 자동으로 1 씩 증가
@@ -31,6 +37,14 @@ public class Article {
         this.title = title;
         this.content = content;
     }
+
+    @CreatedDate//엔티티가 생성될 때 생성 시간 저장
+    @Column(name="created_at")
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate//엔티티가 수정될 때 수정 시간 저장
+    @Column(name="updated_at")
+    private LocalDateTime updatedAt;
 
 
 
