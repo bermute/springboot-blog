@@ -31,6 +31,9 @@
         <!--삭제 버튼 id 추가-->
         <button type="button" id="delete-btn"
                 class="btn btn-secondary btn-sm">삭제</button>
+
+        <button type="button" th:onclick="|location.href='@{/articles}'|"
+                class="btn btn-secondary btn-sm">목록</button>
       </article>
     </div>
   </div>
