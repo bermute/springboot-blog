@@ -1,5 +1,6 @@
 package com.abell.blog.utile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,6 +9,7 @@ import org.springframework.util.SerializationUtils;
 import java.util.Base64;
 
 public class CookieUtil {
+    private static final ObjectMapper objectMapper = new ObjectMapper(); //쿠키 역직렬화에 사용
     // 요청값(이름,값,만료 기간)을 바탕으로 쿠키 추가
     public static void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
         Cookie cookie = new Cookie(name, value);
@@ -43,10 +45,16 @@ public class CookieUtil {
 
     // 쿠키를 역직렬화해 객체로 변환
     public static <T> T deserialize(Cookie cookie, Class<T> cls) {
-        return cls.cast(
+        try {
+            byte[] decoded = Base64.getUrlDecoder().decode(cookie.getValue());
+            return objectMapper.readValue(decoded, cls);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to deserialize cookie", e);
+        }
+/*        return cls.cast(
                 SerializationUtils.deserialize(
                         Base64.getUrlDecoder().decode(cookie.getValue())
                 )
-        );
+        );*/
     }
 }
