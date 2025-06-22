@@ -57,7 +57,9 @@ public class WebOAuthSecurityConfig {
                 .addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class) //JWT 토큰을 파싱해 인증 처리를 수행하는 필터를 등록
                 .authorizeHttpRequests(auth -> auth  // authorizeRequests 사용으로 변경요구 사항 뜨기때문에 변경
                         .requestMatchers(new AntPathRequestMatcher("/api/token")).permitAll() // /api/token: 누구나 접근 허용
-                        .requestMatchers(new AntPathRequestMatcher("/api/**")).authenticated() // /api/**: 인증된 사용자만 접근 가능
+                        .requestMatchers(new AntPathRequestMatcher("/api/**")).authenticated()
+                        //.requestMatchers("/articles").authenticated() 이건좀더 생각해봐야될듯
+                        // /api/**: 인증된 사용자만 접근 가능
                         .anyRequest().permitAll()) //나머지 경로: 모두 허용
                 .oauth2Login(oauth2 -> oauth2 //소셜 로그인(OAuth2) 설정: 로그인 성공 시 JWT 발급
                         .loginPage("/login")
