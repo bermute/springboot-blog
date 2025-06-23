@@ -27,7 +27,10 @@ spring:
 jwt:
   issuer: ajufresh@gmail.com
   secret_key: study-springboot
-
+logging:
+  level:
+    root: INFO
+    com.abell.blog: DEBUG
 
 #spring:
 #  datasource:
