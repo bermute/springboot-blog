@@ -1,3 +1,6 @@
+server:
+  port: ${SERVER-PORT:8080}
+
 spring:
   security:
     oauth2:
@@ -21,9 +24,7 @@ spring:
 jwt:
   issuer: ajufresh@gmail.com
   secret_key: study-springboot
-#logging:
-#  level:
-#    root: INFO
-#    com.abell.blog: DEBUG
+ # 환경변수가 있으면 사용, 없으면 기본값 5000
+
 
 
