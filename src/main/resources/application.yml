@@ -23,7 +23,7 @@ spring:
       enabled: true
 jwt:
   issuer: ajufresh@gmail.com
-  secret_key: study-springboot
+  secret_key: ${SPRINGBOOT_SECRET_KEY}
  # 환경변수가 있으면 사용, 없으면 기본값 5000
 
 
