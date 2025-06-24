@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SERVER-PORT: 8080
+      SERVER-PORT: ${{ secrets.SERVER_PORT }}
 
     steps:
       - uses: actions/checkout@v3
