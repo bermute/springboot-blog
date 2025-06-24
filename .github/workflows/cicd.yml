@@ -8,8 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      SERVER-PORT: ${{ secrets.SERVER_PORT }}
 
     steps:
       - uses: actions/checkout@v3
